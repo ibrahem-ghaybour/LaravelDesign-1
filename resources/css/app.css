@@ -1,0 +1,176 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../views/**/*.blade.php';
+
+/* -------------------------------------------------------------------------- */
+/* Theme variables — override via [data-theme] or :root for new themes        */
+/* -------------------------------------------------------------------------- */
+:root {
+    --theme-primary: #4dbb5f;
+    --theme-primary-hover: #3da84f;
+    --theme-primary-light: #e8f7eb;
+    --theme-secondary: #0a3d62;
+    --theme-secondary-hover: #0c4d7a;
+    --theme-secondary-light: #e6eef4;
+    --theme-accent: #f39c12;
+    --theme-surface: #ffffff;
+    --theme-surface-muted: #f5f7fa;
+    --theme-surface-dark: #0a3d62;
+    --theme-text: #2d3436;
+    --theme-text-muted: #636e72;
+    --theme-text-inverse: #ffffff;
+    --theme-border: #e2e8f0;
+    --theme-topbar: #f8f9fb;
+    --theme-shadow: 0 4px 24px rgb(10 61 98 / 8%);
+    --theme-radius: 0.75rem;
+    --theme-radius-lg: 1rem;
+    --theme-font-ar: 'Tajawal', ui-sans-serif, system-ui, sans-serif;
+    --theme-font-en: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
+}
+
+[data-theme='ocean'] {
+    --theme-primary: #0984e3;
+    --theme-primary-hover: #0773c7;
+    --theme-primary-light: #e3f2fd;
+    --theme-secondary: #1e3799;
+    --theme-secondary-hover: #18307f;
+}
+
+@theme {
+    --color-primary: var(--theme-primary);
+    --color-primary-hover: var(--theme-primary-hover);
+    --color-primary-light: var(--theme-primary-light);
+    --color-secondary: var(--theme-secondary);
+    --color-secondary-hover: var(--theme-secondary-hover);
+    --color-secondary-light: var(--theme-secondary-light);
+    --color-accent: var(--theme-accent);
+    --color-surface: var(--theme-surface);
+    --color-surface-muted: var(--theme-surface-muted);
+    --color-surface-dark: var(--theme-surface-dark);
+    --color-text: var(--theme-text);
+    --color-text-muted: var(--theme-text-muted);
+    --color-text-inverse: var(--theme-text-inverse);
+    --color-border: var(--theme-border);
+    --color-topbar: var(--theme-topbar);
+    --font-sans: var(--theme-font-en);
+    --font-arabic: var(--theme-font-ar);
+    --shadow-theme: var(--theme-shadow);
+    --radius-theme: var(--theme-radius);
+    --radius-theme-lg: var(--theme-radius-lg);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Base                                                                       */
+/* -------------------------------------------------------------------------- */
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    [dir='rtl'] body {
+        font-family: var(--theme-font-ar);
+    }
+
+    [dir='ltr'] body {
+        font-family: var(--theme-font-en);
+    }
+
+    body {
+        @apply bg-surface text-text antialiased;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Components                                                                 */
+/* -------------------------------------------------------------------------- */
+@layer components {
+    .container-site {
+        @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+    }
+
+    .section-padding {
+        @apply py-16 md:py-20;
+    }
+
+    .section-heading-line {
+        @apply mx-auto mt-3 h-1 w-16 rounded-full bg-primary;
+    }
+
+    .nav-link {
+        @apply relative px-3 py-2 text-sm font-medium text-text transition-colors hover:text-primary;
+    }
+
+    .nav-link-active {
+        @apply text-primary;
+    }
+
+    .nav-link-active::after {
+        content: '';
+        @apply absolute inset-x-3 -bottom-1 h-0.5 rounded-full bg-primary;
+    }
+
+    .card-base {
+        @apply rounded-theme-lg border border-border bg-surface shadow-theme transition-shadow hover:shadow-lg;
+    }
+
+    .btn {
+        @apply inline-flex items-center justify-center gap-2 rounded-theme px-6 py-2.5 text-sm font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2;
+    }
+
+    .btn-primary {
+        @apply inline-flex items-center justify-center gap-2 rounded-theme px-6 py-2.5 text-sm font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 bg-primary text-text-inverse hover:bg-primary-hover;
+    }
+
+    .btn-secondary {
+        @apply inline-flex items-center justify-center gap-2 rounded-theme px-6 py-2.5 text-sm font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 bg-secondary text-text-inverse hover:bg-secondary-hover;
+    }
+
+    .btn-outline {
+        @apply inline-flex items-center justify-center gap-2 rounded-theme px-6 py-2.5 text-sm font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 border-2 border-text-inverse text-text-inverse hover:bg-white/10;
+    }
+
+    .btn-outline-dark {
+        @apply inline-flex items-center justify-center gap-2 rounded-theme px-6 py-2.5 text-sm font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 border-2 border-secondary text-secondary hover:bg-secondary hover:text-text-inverse;
+    }
+
+    .stat-icon-ring {
+        @apply flex size-14 items-center justify-center rounded-full border-2 border-primary text-primary;
+    }
+
+    .progress-bar {
+        @apply h-2 overflow-hidden rounded-full bg-surface-muted;
+    }
+
+    .progress-fill {
+        @apply h-full rounded-full bg-primary transition-all duration-500;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Utilities                                                                  */
+/* -------------------------------------------------------------------------- */
+@layer utilities {
+    .text-balance {
+        text-wrap: balance;
+    }
+
+    .hero-overlay {
+        background: linear-gradient(
+            to inline-start,
+            rgb(10 61 98 / 75%) 0%,
+            rgb(10 61 98 / 40%) 50%,
+            transparent 100%
+        );
+    }
+
+    [dir='ltr'] .hero-overlay {
+        background: linear-gradient(
+            to right,
+            rgb(10 61 98 / 75%) 0%,
+            rgb(10 61 98 / 40%) 50%,
+            transparent 100%
+        );
+    }
+}
