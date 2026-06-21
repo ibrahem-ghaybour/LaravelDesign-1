@@ -1,33 +1,30 @@
 <header class="sticky top-0 z-40 border-b border-border bg-surface/95 backdrop-blur-sm">
     <div class="container-site">
-        <div class="flex items-center justify-between gap-4 py-4">
-            {{-- Logo --}}
-            <a href="{{ route('home') }}" class="flex shrink-0 items-center gap-2">
-                <x-layout.logo class="size-10" />
+        <div class="grid grid-cols-[auto_1fr_auto] items-center gap-4 py-3.5">
+            {{-- Logo (start in RTL) --}}
+            <a href="{{ route('home') }}" class="flex shrink-0 items-center gap-2.5">
+                <x-layout.logo class="size-11" />
                 <div class="hidden sm:block">
-                    <span class="block text-lg font-bold text-secondary leading-tight">{{ __('site.name') }}</span>
-                    <span class="block text-xs text-text-muted">{{ __('site.tagline') }}</span>
+                    <span class="block text-base font-bold leading-tight text-secondary">{{ __('site.name') }}</span>
+                    <span class="block text-[11px] text-text-muted">{{ __('site.tagline') }}</span>
                 </div>
             </a>
 
-            {{-- Desktop navigation --}}
-            <nav class="hidden items-center gap-1 xl:flex" aria-label="{{ __('site.nav.home') }}">
+            {{-- Desktop navigation (centered) --}}
+            <nav class="hidden items-center justify-center gap-0.5 xl:flex" aria-label="{{ __('site.nav.home') }}">
                 @foreach (config('site.nav') as $item)
                     @php
                         $isActive = ($item['route'] === 'home' && request()->routeIs('home'));
                         $href = $item['route'] === 'home' ? route('home') : $item['route'];
                     @endphp
-                    <a
-                        href="{{ $href }}"
-                        @class(['nav-link', 'nav-link-active' => $isActive])
-                    >
+                    <a href="{{ $href }}" @class(['nav-link', 'nav-link-active' => $isActive])>
                         {{ __($item['label']) }}
                     </a>
                 @endforeach
             </nav>
 
-            {{-- Donate CTA + Mobile toggle --}}
-            <div class="flex items-center gap-3">
+            {{-- Donate CTA + Mobile toggle (end in RTL) --}}
+            <div class="flex items-center justify-end gap-3">
                 <a href="#" class="btn-primary hidden sm:inline-flex">
                     <x-icons.heart class="size-4" />
                     {{ __('site.nav.donate') }}

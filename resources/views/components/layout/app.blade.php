@@ -22,7 +22,7 @@
     <button
         id="back-to-top"
         type="button"
-        class="fixed bottom-6 end-6 z-50 flex size-11 items-center justify-center rounded-full bg-primary text-text-inverse opacity-0 shadow-lg transition-opacity pointer-events-none hover:bg-primary-hover"
+        class="fixed bottom-6 end-6 z-50 flex size-11 translate-y-4 items-center justify-center rounded-full bg-primary text-text-inverse opacity-0 shadow-lg transition-all duration-300 pointer-events-none hover:scale-110 hover:bg-primary-hover"
         aria-label="{{ __('site.footer.back_to_top') }}"
     >
         <x-icons.arrow-up class="size-5" />

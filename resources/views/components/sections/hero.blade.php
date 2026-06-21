@@ -1,11 +1,11 @@
 @props(['slides'])
 
-<section id="hero-slider" class="relative h-[70vh] min-h-[480px] max-h-[720px] overflow-hidden bg-secondary">
+<section id="hero-slider" class="relative h-[75vh] min-h-[520px] max-h-[760px] overflow-hidden bg-secondary">
     @foreach ($slides as $index => $slide)
         <div
             data-slide
             @class([
-                'absolute inset-0 transition-opacity duration-700',
+                'absolute inset-0 transition-opacity duration-1000 ease-in-out',
                 'opacity-100 z-10' => $index === 0,
                 'opacity-0' => $index !== 0,
             ])
@@ -13,7 +13,10 @@
             <img
                 src="{{ asset($slide['image']) }}"
                 alt=""
-                class="size-full object-cover"
+                @class([
+                    'hero-slide-img size-full object-cover',
+                    'is-active' => $index === 0,
+                ])
                 @if ($index > 0) loading="lazy" @endif
             >
             <div class="hero-overlay absolute inset-0"></div>
@@ -21,17 +24,18 @@
     @endforeach
 
     <div class="container-site relative z-20 flex h-full items-center">
-        <div class="max-w-xl text-text-inverse">
+        <div class="max-w-lg text-text-inverse">
             @foreach ($slides as $index => $slide)
                 <div
                     data-slide-content
-                    @class(['transition-opacity duration-500', 'hidden' => $index !== 0])
+                    @class(['transition-opacity duration-500', 'hidden' => $index !== 0, 'hero-content-enter' => $index === 0])
                 >
-                    <h1 class="text-4xl font-extrabold leading-tight md:text-5xl lg:text-6xl text-balance">
+                    <h1 class="text-4xl font-extrabold leading-tight md:text-5xl lg:text-[3.25rem] text-balance">
                         {{ __($slide['title_key']) }}
+                        <br>
                         <span class="text-primary">{{ __($slide['title_highlight_key']) }}</span>
                     </h1>
-                    <p class="mt-5 text-base leading-relaxed text-white/90 md:text-lg">
+                    <p class="mt-5 max-w-md text-base leading-relaxed text-white/90 md:text-lg">
                         {{ __($slide['subtitle_key']) }}
                     </p>
                 </div>
@@ -49,23 +53,22 @@
         </div>
     </div>
 
-    {{-- Slider controls --}}
-    <button data-prev type="button" class="absolute start-4 top-1/2 z-30 flex size-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/20 text-text-inverse backdrop-blur-sm hover:bg-white/30 transition-colors" aria-label="Previous">
+    <button data-prev type="button" class="absolute start-4 top-1/2 z-30 flex size-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/20 text-text-inverse backdrop-blur-sm transition-all duration-200 hover:scale-110 hover:bg-white/30" aria-label="Previous">
         <x-icons.arrow-left class="size-5" />
     </button>
-    <button data-next type="button" class="absolute end-4 top-1/2 z-30 flex size-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/20 text-text-inverse backdrop-blur-sm hover:bg-white/30 transition-colors" aria-label="Next">
+    <button data-next type="button" class="absolute end-4 top-1/2 z-30 flex size-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/20 text-text-inverse backdrop-blur-sm transition-all duration-200 hover:scale-110 hover:bg-white/30" aria-label="Next">
         <x-icons.arrow-right class="size-5" />
     </button>
 
-    <div class="absolute bottom-6 inset-x-0 z-30 flex justify-center gap-2">
+    <div class="absolute inset-x-0 bottom-6 z-30 flex justify-center gap-2.5">
         @foreach ($slides as $index => $slide)
             <button
                 data-dot
                 type="button"
                 @class([
-                    'size-2.5 rounded-full transition-colors',
-                    'bg-primary' => $index === 0,
-                    'bg-white/50' => $index !== 0,
+                    'size-2.5 rounded-full transition-all duration-300',
+                    'bg-primary scale-125' => $index === 0,
+                    'bg-white/50 hover:bg-white/70' => $index !== 0,
                 ])
                 aria-label="Slide {{ $index + 1 }}"
             ></button>

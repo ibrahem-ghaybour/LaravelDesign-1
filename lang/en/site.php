@@ -22,7 +22,7 @@ return [
     ],
 
     'hero' => [
-        'title' => 'We Build Life,',
+        'title' => 'We Build Life',
         'title_highlight' => 'We Create Hope',
         'subtitle' => 'Together we build healthier, more hopeful communities through community development and healthcare programs in the areas that need them most.',
         'donate' => 'Donate Now',

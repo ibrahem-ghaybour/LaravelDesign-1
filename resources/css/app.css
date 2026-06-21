@@ -5,37 +5,30 @@
 @source '../views/**/*.blade.php';
 
 /* -------------------------------------------------------------------------- */
-/* Theme variables — override via [data-theme] or :root for new themes        */
+/* Theme variables                                                            */
 /* -------------------------------------------------------------------------- */
 :root {
-    --theme-primary: #4dbb5f;
-    --theme-primary-hover: #3da84f;
-    --theme-primary-light: #e8f7eb;
-    --theme-secondary: #0a3d62;
-    --theme-secondary-hover: #0c4d7a;
+    --theme-primary: #4caf50;
+    --theme-primary-hover: #43a047;
+    --theme-primary-light: #e8f5e9;
+    --theme-secondary: #003366;
+    --theme-secondary-hover: #002952;
     --theme-secondary-light: #e6eef4;
     --theme-accent: #f39c12;
     --theme-surface: #ffffff;
     --theme-surface-muted: #f5f7fa;
-    --theme-surface-dark: #0a3d62;
+    --theme-surface-dark: #003366;
     --theme-text: #2d3436;
     --theme-text-muted: #636e72;
     --theme-text-inverse: #ffffff;
     --theme-border: #e2e8f0;
     --theme-topbar: #f8f9fb;
-    --theme-shadow: 0 4px 24px rgb(10 61 98 / 8%);
-    --theme-radius: 0.75rem;
-    --theme-radius-lg: 1rem;
+    --theme-shadow: 0 4px 24px rgb(0 51 102 / 8%);
+    --theme-shadow-lg: 0 8px 40px rgb(0 51 102 / 12%);
+    --theme-radius: 0.5rem;
+    --theme-radius-lg: 0.75rem;
     --theme-font-ar: 'Tajawal', ui-sans-serif, system-ui, sans-serif;
     --theme-font-en: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
-}
-
-[data-theme='ocean'] {
-    --theme-primary: #0984e3;
-    --theme-primary-hover: #0773c7;
-    --theme-primary-light: #e3f2fd;
-    --theme-secondary: #1e3799;
-    --theme-secondary-hover: #18307f;
 }
 
 @theme {
@@ -57,8 +50,49 @@
     --font-sans: var(--theme-font-en);
     --font-arabic: var(--theme-font-ar);
     --shadow-theme: var(--theme-shadow);
+    --shadow-theme-lg: var(--theme-shadow-lg);
     --radius-theme: var(--theme-radius);
     --radius-theme-lg: var(--theme-radius-lg);
+}
+
+/* -------------------------------------------------------------------------- */
+/* Keyframes                                                                  */
+/* -------------------------------------------------------------------------- */
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes ken-burns {
+    from { transform: scale(1); }
+    to { transform: scale(1.08); }
+}
+
+@keyframes slide-in-content {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse-soft {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
 }
 
 /* -------------------------------------------------------------------------- */
@@ -99,7 +133,7 @@
     }
 
     .nav-link {
-        @apply relative px-3 py-2 text-sm font-medium text-text transition-colors hover:text-primary;
+        @apply relative px-3 py-2 text-sm font-medium text-text transition-colors duration-200 hover:text-primary;
     }
 
     .nav-link-active {
@@ -112,7 +146,11 @@
     }
 
     .card-base {
-        @apply rounded-theme-lg border border-border bg-surface shadow-theme transition-shadow hover:shadow-lg;
+        @apply rounded-theme-lg border border-border bg-surface shadow-theme transition-all duration-300;
+    }
+
+    .card-hover {
+        @apply hover:-translate-y-1.5 hover:shadow-theme-lg;
     }
 
     .btn {
@@ -120,23 +158,23 @@
     }
 
     .btn-primary {
-        @apply inline-flex items-center justify-center gap-2 rounded-theme px-6 py-2.5 text-sm font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 bg-primary text-text-inverse hover:bg-primary-hover;
+        @apply inline-flex items-center justify-center gap-2 rounded-theme px-6 py-2.5 text-sm font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 bg-primary text-text-inverse hover:bg-primary-hover hover:scale-[1.03] active:scale-[0.98];
     }
 
     .btn-secondary {
-        @apply inline-flex items-center justify-center gap-2 rounded-theme px-6 py-2.5 text-sm font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 bg-secondary text-text-inverse hover:bg-secondary-hover;
+        @apply inline-flex items-center justify-center gap-2 rounded-theme px-6 py-2.5 text-sm font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 bg-secondary text-text-inverse hover:bg-secondary-hover hover:scale-[1.03] active:scale-[0.98];
     }
 
     .btn-outline {
-        @apply inline-flex items-center justify-center gap-2 rounded-theme px-6 py-2.5 text-sm font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 border-2 border-text-inverse text-text-inverse hover:bg-white/10;
-    }
-
-    .btn-outline-dark {
-        @apply inline-flex items-center justify-center gap-2 rounded-theme px-6 py-2.5 text-sm font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 border-2 border-secondary text-secondary hover:bg-secondary hover:text-text-inverse;
+        @apply inline-flex items-center justify-center gap-2 rounded-theme px-6 py-2.5 text-sm font-semibold transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 border-2 border-text-inverse text-text-inverse hover:bg-white/10 hover:scale-[1.03] active:scale-[0.98];
     }
 
     .stat-icon-ring {
         @apply flex size-14 items-center justify-center rounded-full border-2 border-primary text-primary;
+    }
+
+    .stats-bar {
+        @apply rounded-theme-lg border border-border bg-surface shadow-theme-lg;
     }
 
     .progress-bar {
@@ -144,7 +182,33 @@
     }
 
     .progress-fill {
-        @apply h-full rounded-full bg-primary transition-all duration-500;
+        @apply h-full rounded-full bg-primary;
+        width: 0;
+        transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .progress-fill.is-animated {
+        width: var(--progress, 0%);
+    }
+
+    .hero-slide-img {
+        animation: ken-burns 8s ease-out forwards;
+    }
+
+    .hero-slide-img.is-active {
+        animation: ken-burns 8s ease-out forwards;
+    }
+
+    .impact-step-number {
+        @apply mx-auto mb-3 flex size-8 items-center justify-center rounded-full bg-primary text-xs font-bold text-text-inverse;
+    }
+
+    .impact-step-circle {
+        @apply mx-auto flex size-16 items-center justify-center rounded-full border-2 border-primary bg-white/10 text-primary transition-transform duration-300 hover:scale-110;
+    }
+
+    .partner-logo {
+        @apply flex h-16 w-32 items-center justify-center grayscale opacity-70 transition-all duration-300 hover:grayscale-0 hover:opacity-100 hover:scale-105;
     }
 }
 
@@ -159,8 +223,8 @@
     .hero-overlay {
         background: linear-gradient(
             to inline-start,
-            rgb(10 61 98 / 75%) 0%,
-            rgb(10 61 98 / 40%) 50%,
+            rgb(0 51 102 / 82%) 0%,
+            rgb(0 51 102 / 45%) 45%,
             transparent 100%
         );
     }
@@ -168,9 +232,30 @@
     [dir='ltr'] .hero-overlay {
         background: linear-gradient(
             to right,
-            rgb(10 61 98 / 75%) 0%,
-            rgb(10 61 98 / 40%) 50%,
+            rgb(0 51 102 / 82%) 0%,
+            rgb(0 51 102 / 45%) 45%,
             transparent 100%
         );
+    }
+
+    .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+                    transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    .hero-content-enter {
+        animation: slide-in-content 0.6s ease-out forwards;
     }
 }

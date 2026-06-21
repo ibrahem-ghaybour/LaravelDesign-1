@@ -48,10 +48,10 @@ return [
     ],
 
     'stats' => [
-        ['icon' => 'users', 'value' => '50,000+', 'label_key' => 'site.stats.beneficiaries'],
-        ['icon' => 'clipboard-check', 'value' => '120+', 'label_key' => 'site.stats.projects'],
-        ['icon' => 'globe', 'value' => '15', 'label_key' => 'site.stats.countries'],
-        ['icon' => 'heart-hand', 'value' => '500+', 'label_key' => 'site.stats.volunteers'],
+        ['icon' => 'heart-hand', 'value' => '500+', 'count' => 500, 'suffix' => '+', 'label_key' => 'site.stats.volunteers'],
+        ['icon' => 'globe', 'value' => '15', 'count' => 15, 'label_key' => 'site.stats.countries'],
+        ['icon' => 'clipboard-check', 'value' => '120+', 'count' => 120, 'suffix' => '+', 'label_key' => 'site.stats.projects'],
+        ['icon' => 'users', 'value' => '50,000+', 'count' => 50000, 'suffix' => '+', 'label_key' => 'site.stats.beneficiaries'],
     ],
 
     'programs' => [
