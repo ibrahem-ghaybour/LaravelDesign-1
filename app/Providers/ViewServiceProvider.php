@@ -79,24 +79,7 @@ class ViewServiceProvider extends ServiceProvider
 
                 // Menu items with recursive children, cached separately
                 // so we can invalidate just the menu when menu items change
-               /* $menuItems = Cache::remember("menu_items_{$locale}", 600, function () {
-                    return MenuItem::select(
-                        'id',
-                        'rank',
-                        columnLocalize('title', table: 'menu_items') . ' as title',
-                        'link'
-                    )
-                        ->whereNull('parent_id')
-                        ->with(['childrenRecursive' => function ($q) {
-                            $q->select(
-                                'id', 'parent_id', 'rank',
-                                columnLocalize('title', table: 'menu_items') . ' as title',
-                                'link'
-                            )->orderBy('rank');
-                        }])
-                        ->orderBy('rank')
-                        ->get();
-                }); */
+               
 
                 $menuItems = Cache::remember("menu_items_{$locale}", 600, function () {
                     return MenuItem::select(

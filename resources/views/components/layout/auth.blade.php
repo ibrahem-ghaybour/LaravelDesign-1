@@ -17,7 +17,7 @@
 <body class="flex min-h-screen flex-col bg-surface-muted">
     <header class="border-b border-border bg-surface/95 backdrop-blur-sm">
         <div class="container-site flex items-center justify-between py-4">
-            <a href="{{ route('home') }}" class="flex items-center gap-2.5">
+            <a href="{{ route('main') }}" class="flex items-center gap-2.5">
                 <x-layout.logo class="size-10" />
                 <span class="text-base font-bold text-secondary">{{ __('site.name') }}</span>
             </a>
@@ -30,7 +30,7 @@
                     <x-icons.globe class="size-4" />
                     {{ __('site.locale.switch_to') }}
                 </a>
-                <a href="{{ route('home') }}" class="text-sm font-medium text-text-muted transition-colors hover:text-primary">
+                <a href="{{ route('main') }}" class="text-sm font-medium text-text-muted transition-colors hover:text-primary">
                     {{ __('site.auth.back_home') }}
                 </a>
             </div>

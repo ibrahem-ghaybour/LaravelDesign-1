@@ -9,7 +9,7 @@
         };
 
         $isActive = match (true) {
-            $routeName === 'home' => request()->routeIs('home'),
+            $routeName === 'main' => request()->routeIs('main'),
             $routeName === 'news.index' => request()->routeIs('news.*'),
             $routeName === 'contact.index' => request()->routeIs('contact.*'),
             default => false,
@@ -22,7 +22,7 @@
 <header class="sticky top-0 z-40 border-b border-border bg-surface/95 backdrop-blur-sm">
     <div class="container-site">
         <div class="grid grid-cols-[auto_1fr_auto] items-center gap-4 py-3.5">
-            <a href="{{ route('home') }}" class="flex shrink-0 items-center gap-2.5">
+            <a href="{{ route('main') }}" class="flex shrink-0 items-center gap-2.5">
                 <x-layout.logo class="size-11" />
                 <div class="hidden sm:block">
                     <span class="block text-base font-bold leading-tight text-secondary">{{ __('site.name') }}</span>
@@ -54,7 +54,7 @@
                                 @foreach ($item['children'] as $child)
                                     @php($childNav = $resolveNav($child))
                                     <a
-                                        href="{{ $childNav['href'] }}"
+                                        href="{{ url($childNav['href']) }}"
                                         role="menuitem"
                                         @class(['nav-dropdown-item', 'nav-dropdown-item-active' => $childNav['isActive']])
                                     >
@@ -64,7 +64,7 @@
                             </div>
                         </div>
                     @else
-                        <a href="{{ $nav['href'] }}" @class(['nav-link', 'nav-link-active' => $nav['isActive']])>
+                        <a href="{{ url($nav['href']) }}" @class(['nav-link', 'nav-link-active' => $nav['isActive']])>
                             {{ __($item['label']) }}
                         </a>
                     @endif
@@ -72,7 +72,7 @@
             </nav>
 
             <div class="flex items-center justify-end gap-3">
-                <a href="{{ route('donate.index') }}" class="btn-primary hidden sm:inline-flex">
+                <a href="{{ route('donate') }}" class="btn-primary hidden sm:inline-flex">
                     <x-icons.heart class="size-4" />
                     {{ __('site.nav.donate') }}
                 </a>
@@ -154,7 +154,7 @@
                 </div>
 
                 <div class="border-t border-border py-3">
-                    <a href="{{ route('donate.index') }}" data-mobile-nav-link class="btn-primary w-full">
+                    <a href="{{ route('donate') }}" data-mobile-nav-link class="btn-primary w-full">
                         <x-icons.heart class="size-4" />
                         {{ __('site.nav.donate') }}
                     </a>

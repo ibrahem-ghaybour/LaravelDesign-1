@@ -8,7 +8,7 @@
 
     <div class="container-site relative">
         <nav class="mb-4 flex items-center gap-2 text-sm text-white/70" aria-label="Breadcrumb">
-            <a href="{{ route('home') }}" class="transition-colors hover:text-primary">{{ __('site.nav.home') }}</a>
+            <a href="{{ route('main') }}" class="transition-colors hover:text-primary">{{ __('site.nav.home') }}</a>
             <x-icons.arrow-forward class="size-3.5" />
             <span class="text-white">{{ $title }}</span>
         </nav>

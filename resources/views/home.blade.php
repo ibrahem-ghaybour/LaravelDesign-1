@@ -81,14 +81,14 @@
                         :image="$item['image']"
                         :date="__($item['date_key'])"
                         :title="__($item['title_key'])"
-                        :url="route('news.show', $item['slug'])"
+                        :url="route('news', $item['slug'])"
                         @class(['reveal', 'reveal-delay-' . min($index + 1, 4)])
                     />
                 @endforeach
             </div>
 
             <div class="mt-10 text-center reveal">
-                <a href="{{ route('news.index') }}" class="btn-secondary">{{ __('site.news.view_all') }}</a>
+                <a href="{{ route('news') }}" class="btn-secondary">{{ __('site.news.view_all') }}</a>
             </div>
         </div>
     </section>
@@ -140,7 +140,7 @@
                     <div @class(['partner-logo reveal', 'reveal-delay-' . min($index + 1, 4)])>
                         <img 
                         
-                        src="{{ url('images/images/' . ($partner['logo'] ?? '')) }}"
+                        src="{{ url('images/thumb_100/' . ($partner['logo'] ?? '')) }}"
                          alt="{{ $partner['name'] }}" class="max-h-full max-w-full object-contain" loading="lazy">
                     </div>
                 @endforeach

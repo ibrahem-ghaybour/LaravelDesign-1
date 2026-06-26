@@ -24,9 +24,9 @@
             <div>
                 <h3 class="mb-4 text-lg font-bold">{{ __('site.footer.quick_links') }}</h3>
                 <ul class="space-y-2.5 text-sm text-white/80">
-                    @foreach (config('site.nav') as $item)
+                    @foreach ($menuItems as $item) 
                         <li>
-                            <a href="{{ $item['route'] === 'home' ? route('home') : $item['route'] }}" class="transition-colors hover:text-primary">
+                            <a href="{{ $item['route'] === 'main' ? route('main') : url($item['route']) }}" class="transition-colors hover:text-primary">
                                 {{ __($item['label']) }}
                             </a>
                         </li>
@@ -45,18 +45,18 @@
                     <li>
                         <a href="mailto:{{ config('site.contact.email') }}" class="inline-flex items-center gap-2 transition-colors hover:text-primary">
                             <x-icons.mail class="size-4 shrink-0 text-primary" />
-                            {{ config('site.contact.email') }}
+                            {{ $VSPVar['email']  }}
                         </a>
                     </li>
                     <li>
                         <a href="tel:{{ config('site.contact.phone') }}" class="inline-flex items-center gap-2 transition-colors hover:text-primary" dir="ltr">
                             <x-icons.phone class="size-4 shrink-0 text-primary" />
-                            {{ config('site.contact.phone') }}
+                            {{ $VSPVar['phoneNo'] }}
                         </a>
                     </li>
                 </ul>
                 <div class="mt-5 flex gap-3">
-                    @foreach (config('site.social') as $social)
+                    @foreach ($socials as $social)
                         <a href="{{ $social['url'] }}" class="flex size-9 items-center justify-center rounded-full bg-white/10 transition-all duration-200 hover:scale-110 hover:bg-primary" aria-label="{{ $social['name'] }}">
                             <x-dynamic-component :component="'icons.' . $social['icon']" class="size-4" />
                         </a>
