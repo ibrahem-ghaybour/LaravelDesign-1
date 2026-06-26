@@ -262,6 +262,32 @@
         @apply bg-primary-light text-primary;
     }
 
+    .nav-submenu {
+        @apply relative;
+    }
+
+    .nav-submenu-trigger {
+        @apply flex w-full items-center justify-between gap-2 text-start;
+    }
+
+    .nav-submenu-chevron {
+        @apply shrink-0 transition-transform duration-200;
+    }
+
+    .nav-submenu-menu {
+        @apply invisible absolute start-full top-0 z-50 ms-1 min-w-44 origin-top scale-95 rounded-theme-lg border border-border bg-surface py-1 opacity-0 shadow-theme-lg transition-all duration-200;
+    }
+
+    .nav-submenu:hover > .nav-submenu-menu,
+    .nav-submenu:focus-within > .nav-submenu-menu {
+        @apply visible scale-100 opacity-100;
+    }
+
+    .nav-submenu:hover > .nav-submenu-trigger,
+    .nav-submenu:focus-within > .nav-submenu-trigger {
+        @apply bg-surface-muted text-primary;
+    }
+
     .mobile-nav-panel {
         @apply grid overflow-hidden transition-[grid-template-rows] duration-300 ease-in-out;
         grid-template-rows: 0fr;
@@ -370,7 +396,35 @@
     }
 
     .partner-logo {
-        @apply flex h-16 w-32 items-center justify-center grayscale opacity-70 transition-all duration-300 hover:grayscale-0 hover:opacity-100 hover:scale-105;
+        @apply mx-auto flex h-20 w-full max-w-40 items-center justify-center px-2 transition-all duration-300 hover:scale-105;
+    }
+
+    .partners-slider {
+        @apply flex items-center gap-3 md:gap-6;
+    }
+
+    .partners-swiper {
+        @apply min-w-0 flex-1 overflow-hidden pb-10;
+    }
+
+    .partners-swiper .swiper-slide {
+        @apply flex items-center justify-center;
+    }
+
+    .partners-swiper-nav {
+        @apply flex size-11 shrink-0 items-center justify-center rounded-full bg-secondary text-text-inverse shadow-theme transition-all duration-200 hover:scale-105 hover:bg-secondary-hover disabled:pointer-events-none disabled:opacity-40;
+    }
+
+    .partners-swiper-pagination {
+        @apply bottom-0 flex justify-center gap-2;
+    }
+
+    .partners-swiper .swiper-pagination-bullet {
+        @apply size-2.5 bg-primary/25 opacity-100 transition-all duration-200;
+    }
+
+    .partners-swiper .swiper-pagination-bullet-active {
+        @apply scale-125 bg-primary;
     }
 
     .pagination-btn {

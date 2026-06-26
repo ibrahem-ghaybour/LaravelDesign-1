@@ -51,16 +51,10 @@
                             </button>
 
                             <div class="nav-dropdown-menu" role="menu">
-                                @foreach ($item['children'] as $child)
-                                    @php($childNav = $resolveNav($child))
-                                    <a
-                                        href="{{ url($childNav['href']) }}"
-                                        role="menuitem"
-                                        @class(['nav-dropdown-item', 'nav-dropdown-item-active' => $childNav['isActive']])
-                                    >
-                                        {{ __($child['label']) }}
-                                    </a>
-                                @endforeach
+                                @include('components.layout.partials.nav-dropdown-items', [
+                                    'children' => $item['children'],
+                                    'resolveNav' => $resolveNav,
+                                ])
                             </div>
                         </div>
                     @else
@@ -118,19 +112,10 @@
                                 </button>
 
                                 <div class="mobile-nav-submenu" hidden>
-                                    @foreach ($item['children'] as $child)
-                                        @php($childNav = $resolveNav($child))
-                                        <a
-                                            href="{{ $childNav['href'] }}"
-                                            data-mobile-nav-link
-                                            @class([
-                                                'mobile-nav-sublink',
-                                                'mobile-nav-sublink-active' => $childNav['isActive'],
-                                            ])
-                                        >
-                                            {{ __($child['label']) }}
-                                        </a>
-                                    @endforeach
+                                    @include('components.layout.partials.mobile-nav-items', [
+                                        'children' => $item['children'],
+                                        'resolveNav' => $resolveNav,
+                                    ])
                                 </div>
                             </div>
                         @else

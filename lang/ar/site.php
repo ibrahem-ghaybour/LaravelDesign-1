@@ -214,6 +214,8 @@ return [
 
     'partners' => [
         'title' => 'شركاؤنا',
+        'prev' => 'السابق',
+        'next' => 'التالي',
     ],
 
     'settings' => [

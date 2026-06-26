@@ -1,9 +1,15 @@
 import './bootstrap';
+import Swiper from 'swiper';
+import { Autoplay, Navigation, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 
 document.addEventListener('DOMContentLoaded', () => {
     initMobileNav();
     initNavDropdown();
     initHeroSlider();
+    initPartnersSlider();
     initBackToTop();
     initScrollReveal();
     initCountUp();
@@ -180,6 +186,43 @@ function initHeroSlider() {
 
     show(0);
     startAuto();
+}
+
+function initPartnersSlider() {
+    const slider = document.querySelector('.partners-swiper');
+
+    if (!slider) {
+        return;
+    }
+
+    const slideCount = slider.querySelectorAll('.swiper-slide').length;
+
+    new Swiper(slider, {
+        modules: [Navigation, Pagination, Autoplay],
+        slidesPerView: 2,
+        spaceBetween: 24,
+        loop: slideCount > 6,
+        speed: 600,
+        autoplay: {
+            delay: 3500,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: true,
+        },
+        navigation: {
+            nextEl: '.partners-swiper-next',
+            prevEl: '.partners-swiper-prev',
+        },
+        pagination: {
+            el: '.partners-swiper-pagination',
+            clickable: true,
+        },
+        breakpoints: {
+            480: { slidesPerView: 3, spaceBetween: 28 },
+            768: { slidesPerView: 4, spaceBetween: 32 },
+            1024: { slidesPerView: 5, spaceBetween: 36 },
+            1280: { slidesPerView: 6, spaceBetween: 40 },
+        },
+    });
 }
 
 function initBackToTop() {

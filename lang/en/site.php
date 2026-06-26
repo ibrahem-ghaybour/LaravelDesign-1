@@ -214,6 +214,8 @@ return [
 
     'partners' => [
         'title' => 'Our Partners',
+        'prev' => 'Previous',
+        'next' => 'Next',
     ],
 
     'settings' => [

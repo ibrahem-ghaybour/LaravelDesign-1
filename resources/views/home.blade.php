@@ -128,23 +128,5 @@
         </div>
     </section>
 
-    {{-- Partners --}}
-    <section class="section-padding bg-surface-muted">
-        <div class="container-site">
-            <div class="reveal">
-                <x-ui.section-heading :title="__('site.partners.title')" />
-            </div>
-
-            <div class="flex flex-wrap items-center justify-center gap-8 md:gap-14">
-                @foreach ($partners as $index => $partner)
-                    <div @class(['partner-logo reveal', 'reveal-delay-' . min($index + 1, 4)])>
-                        <img 
-                        
-                        src="{{ url('images/thumb_100/' . ($partner['logo'] ?? '')) }}"
-                         alt="{{ $partner['name'] }}" class="max-h-full max-w-full object-contain" loading="lazy">
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </section>
+    <x-sections.partners-slider :partners="$partners" />
 </x-layout.app>
